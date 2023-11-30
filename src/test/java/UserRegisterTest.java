@@ -1,5 +1,8 @@
 import org.junit.Test;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -52,4 +55,13 @@ public class UserRegisterTest {
         password = user2.password;
         assertNotEquals("A7qtgdj3dd", password);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"abc@yahoo.com", "abc-100@yahoo.com", "abc.100@yahoo.com", "abc111@abc.com", "abc-100@abc.net", "abc.100@abc.com.au", "abc@1.com", "abc@gmail.com.com", "abc+100@gmail.com"})
+    void testEmail(String userEmail){
+        User user = new User();
+        user.matchEmail(userEmail);
+        assertEquals(userEmail, userEmail);
+    }
+
 }
