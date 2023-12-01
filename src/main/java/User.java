@@ -28,7 +28,7 @@ public class User {
         }
     }
     public void matchEmail(String email) {
-        Pattern pattern = Pattern.compile("([a-zA-Z0-9_\\-]+)(\\.[a-zA-Z0-9_\\-]+)*@([a-zA-Z]+)(\\.[a-zA-Z]{2,})");
+        Pattern pattern = Pattern.compile("[A-Za-z0-9_%+-]+(\\.[A-Za-z0-9_%+-]+)*@[A-Za-z0-9]+(\\.[a-zA-Z]{2,}){1,2}");
         Matcher matcher = pattern.matcher(email);
         if(matcher.matches()) {
             System.out.println("Valid Email");
