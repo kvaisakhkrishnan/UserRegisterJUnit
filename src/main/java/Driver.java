@@ -5,19 +5,43 @@ public class Driver {
         System.out.println("Enter First Name: ");
         Scanner scanner = new Scanner(System.in);
         String firstName = scanner.next();
-        user.addFirstName(firstName);
+        try{
+            user.addFirstName(firstName);
+        }
+        catch(Exception err){
+            System.out.println(err.getMessage());
+        }
         System.out.println("Enter Last Name: ");
         String lastName = scanner.next();
-        user.addLastName(lastName);
+        try{
+            user.addLastName(lastName);
+        }
+        catch(Exception err){
+            System.out.println(err.getMessage());
+        }
+
         System.out.println("Enter Useremail: ");
         String useremail = scanner.next();
-        user.matchEmail(useremail);
+        try{
+            user.matchEmail(useremail);
+        }
+        catch(Exception err){
+            System.out.println(err.getMessage());
+        }
         System.out.println("Enter Phonenumber: ");
         String phonenumber = scanner.next();
-        user.matchPhone(phonenumber);
+        try{
+            user.matchPhone(phonenumber);
+        }catch(Exception err){
+            System.out.println(err.getMessage());
+        }
         System.out.println("Enter Password: ");
         String password = scanner.next();
-        user.checkPassword(password);
+        try{
+            user.checkPassword(password);
+        }catch(Exception err){
+            System.out.println(err.getMessage());
+        }
 
     }
 }

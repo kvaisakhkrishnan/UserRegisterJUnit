@@ -5,7 +5,7 @@ public class User {
     String userEmail;
     String phoneNumber;
     String password;
-    public void addFirstName(String firstName) {
+    public void addFirstName(String firstName) throws InvalidUserDetails {
         Pattern pattern = Pattern.compile("[A-Z][a-zA-Z]{2,}");
         Matcher match = pattern.matcher(firstName);
         if(match.matches()) {
@@ -13,10 +13,10 @@ public class User {
             this.firstName = firstName;
         }
         else {
-            System.out.println("Invalid First Name");
+            throw new InvalidUserDetails("Invalid First Name");
         }
     }
-    public void addLastName(String lastName) {
+    public void addLastName(String lastName) throws InvalidUserDetails{
         Pattern pattern = Pattern.compile("[A-Z][a-zA-Z]{2,}");
         Matcher match = pattern.matcher(lastName);
         if(match.matches()) {
@@ -24,10 +24,10 @@ public class User {
             this.lastName = lastName;
         }
         else {
-            System.out.println("Invalid Last Name");
+            throw new InvalidUserDetails("Invalid Last Name");
         }
     }
-    public void matchEmail(String email) {
+    public void matchEmail(String email) throws InvalidUserDetails{
         Pattern pattern = Pattern.compile("[A-Za-z0-9_%+-]+(\\.[A-Za-z0-9_%+-]+)*@[A-Za-z0-9]+(\\.[a-zA-Z]{2,}){1,2}");
         Matcher matcher = pattern.matcher(email);
         if(matcher.matches()) {
@@ -35,21 +35,20 @@ public class User {
             this.userEmail = email;
         }
         else {
-            System.out.println("Invalid Email");
-        }
+            throw new InvalidUserDetails("Invalid Email");        }
     }
-    public void matchPhone(String phoneNumber) {
-        Pattern pattern = Pattern.compile("[0-9]{2}\\s[0-9]{10}");
+    public void matchPhone(String phoneNumber) throws InvalidUserDetails {
+        Pattern pattern = Pattern.compile("[0-9]{2}\\s+[0-9]{10}");
         Matcher matcher = pattern.matcher(phoneNumber);
         if(matcher.matches()) {
             System.out.println("Valid Phone");
             this.phoneNumber = phoneNumber;
         }
         else {
-            System.out.println("Invalid Phone");
+            throw new InvalidUserDetails("Invalid Phone");
         }
     }
-    public void checkPassword(String password) {
+    public void checkPassword(String password) throws InvalidUserDetails {
         Pattern pattern = Pattern.compile("(?=.*[A-Z])(?=.*\\d)(?=.*[@#.*^%=+])[a-zA-Z0-9@#.*^%=+]{8,}");
         Matcher matcher = pattern.matcher(password);
         if(matcher.matches()) {
@@ -57,7 +56,7 @@ public class User {
             this.password = password;
         }
         else {
-            System.out.println("Invalid Password");
+            throw new InvalidUserDetails("Invalid Password");
         }
     }
 }
